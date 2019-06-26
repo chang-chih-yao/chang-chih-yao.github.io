@@ -11,7 +11,7 @@
   <button id="cry">龍泣碑</button>
   <button id="train">訓練場</button>
   <button id="even">活動建築</button>
-  <h3 id="show"></h3>
+  <h3 id="show">Loading...</h3>
 </body>
 </html>
 
@@ -58,8 +58,6 @@
     var $show_cry = "";
     var $show_train = "";
     var $show_even = "";
-    
-    $show.text("Loading...");
 
     $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',a, function(data){
       var my_data = data.split(',');  //把傳出來的字串分割成陣列
@@ -98,7 +96,7 @@
       }
     });
     
-    $show.text("");
+    $show.text("Loading Successfully!");
 
     $High.on('click', function() {
       $show.empty();

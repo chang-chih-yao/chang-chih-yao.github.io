@@ -17,7 +17,11 @@
 
 <script>
   $(function(){
-    var $show = $('#show');
+    document.getElementById('High').disabled=true;
+    document.getElementById('cry').disabled=true;
+    document.getElementById('train').disabled=true;
+    document.getElementById('even').disabled=true;
+    
     var a = {
       sheetUrl : 'https://docs.google.com/spreadsheets/d/10Zqw0itl0gh0oewy5_I9LamZnICU5exQKCIAazlNBAQ/edit?usp=sharing',
       sheetTag : '真龍建築',
@@ -50,6 +54,8 @@
       endRow : 33,
       endCol : 5
     };
+    
+    var $show = $('#show');
     var $High = $('#High');
     var $cry = $('#cry');
     var $train = $('#train');
@@ -58,6 +64,22 @@
     var $show_cry = "";
     var $show_train = "";
     var $show_even = "";
+    var cou = 0;
+    
+    var my_time = setInterval(my_timer, 100);
+    
+    function my_timer(){
+      if (cou == 4){
+        $show.text("Successful");
+        document.getElementById('High').disabled=false;
+        document.getElementById('cry').disabled=false;
+        document.getElementById('train').disabled=false;
+        document.getElementById('even').disabled=false;
+        clearInterval(my_time);
+      }
+    }
+        
+    
 
     $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',a, function(data){
       var my_data = data.split(',');  //把傳出來的字串分割成陣列
@@ -66,16 +88,17 @@
         arr[i] = my_data.splice(0, (a.endCol-a.col+1)); 
         $show_High += (arr[i]+'<br/>');
       }
+      cou += 1;
     });
     
     $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',b, function(data){
-      console.log(data);
       var my_data = data.split(',');  //把傳出來的字串分割成陣列
       var arr = [];
       for(var i=0; i<(b.endRow-b.row+1); i++){
         arr[i] = my_data.splice(0, (b.endCol-b.col+1)); 
         $show_cry += (arr[i]+'<br/>');
       }
+      cou += 1;
     });
     
     $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',c, function(data){
@@ -85,6 +108,7 @@
         arr[i] = my_data.splice(0, (c.endCol-c.col+1)); 
         $show_train += (arr[i]+'<br/>');
       }
+      cou += 1;
     });
     
     $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',d, function(data){
@@ -94,10 +118,10 @@
         arr[i] = my_data.splice(0, (d.endCol-d.col+1)); 
         $show_even += (arr[i]+'<br/>');
       }
+      cou += 1;
     });
     
-    $show.text("Loading Successfully!");
-
+    
     $High.on('click', function() {
       $show.empty();
       $show.html($show_High);

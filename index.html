@@ -15,21 +15,23 @@
 </html>
 
 <script>
-    $(function() {
-        var $a1 = $('#a1'),
-            $a2 = $('#a2'),
-            $a3 = $('#a3'),
-            $b = $('#b'),
-            a = {};
-
-        $b.on('click', function() {
-            a = {
-                data: $a1.val()+','+ $a2.val()+','+$a3.val(),
-                sheetUrl: 'https://docs.google.com/spreadsheets/d/1b9mrL6sn9pgyOvzzW0O18rMpZK1vdhN3Xa65XlHXvJ8/edit?usp=sharing',
-                sheetTag: '工作表1'
-            };
-            console.log(a);
-            $.get('https://script.google.com/macros/s/AKfycbz13aIL9v0BW3etdaKdbf0cb7b6hlm5JVbaAZ1Zd9uTWbciMB0/exec', a);
+    $(function(){
+        var $show = $('#show');
+        var a = {
+            sheetUrl : 'https://docs.google.com/spreadsheets/d/1b9mrL6sn9pgyOvzzW0O18rMpZK1vdhN3Xa65XlHXvJ8/edit?usp=sharing',
+            sheetTag : '工作表1',
+            row: 1,
+            col: 2,
+            endRow : 2,
+            endCol : 3
+        };
+        $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',a, function(data){
+            var d = data.split(',');  //把傳出來的字串分割成陣列
+            var arr = [];  
+            for(var i=0; i<(a.endRow-a.row+1); i++){
+                arr[i] = d.splice(0, (a.endCol-a.col+1)); 
+                $show.append(arr[i]+'<br/>');
+            }
         });
     });
 </script>

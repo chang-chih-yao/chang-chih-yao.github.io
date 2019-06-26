@@ -3,32 +3,98 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Read csv</title>
-  <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+  <title>龍伴建築試算</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-  <h2 id="show"></h2>
+  <button id="High">真龍建築</button>
+  <button id="cry">龍泣碑</button>
+  <button id="train">訓練場</button>
+  <button id="even">活動建築</button>
+  <h3 id="show"></h3>
 </body>
 </html>
 
 <script>
-    $(function(){
-        var $show = $('#show');
-        var a = {
-            sheetUrl : 'https://docs.google.com/spreadsheets/d/10Zqw0itl0gh0oewy5_I9LamZnICU5exQKCIAazlNBAQ/edit?usp=sharing',
-            sheetTag : '工作表3',
-            row: 4,
-            col: 2,
-            endRow : 20,
-            endCol : 7
-        };
-        $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',a, function(data){
-            var d = data.split(',');  //把傳出來的字串分割成陣列
-            var arr = [];  
-            for(var i=0; i<(a.endRow-a.row+1); i++){
-                arr[i] = d.splice(0, (a.endCol-a.col+1)); 
-                $show.append(arr[i]+'<br/>');
-            }
-        });
+  $(function(){
+    var $show = $('#show');
+    var a = {
+      sheetUrl : 'https://docs.google.com/spreadsheets/d/10Zqw0itl0gh0oewy5_I9LamZnICU5exQKCIAazlNBAQ/edit?usp=sharing',
+      sheetTag : '真龍建築',
+      row: 4,
+      col: 3,
+      endRow : 20,
+      endCol : 5
+    };
+    var $High = $('#High');
+    var $cry = $('#cry');
+    var $train = $('#train');
+    var $even = $('#even');
+    var shwo_High = "";
+
+    $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',a, function(data){
+      var d = data.split(',');  //把傳出來的字串分割成陣列
+      var arr = [];  
+      for(var i=0; i<(a.endRow-a.row+1); i++){
+        arr[i] = d.splice(0, (a.endCol-a.col+1)); 
+        $show.append(arr[i]+'<br/>');
+      }
     });
+
+    $High.on('click', function() {
+      $show.empty();
+      a['sheetTag'] = "真龍建築";
+      console.log(a);
+      $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',a, function(data){
+        var d = data.split(',');  //把傳出來的字串分割成陣列
+        var arr = [];  
+        for(var i=0; i<(a.endRow-a.row+1); i++){
+          arr[i] = d.splice(0, (a.endCol-a.col+1)); 
+          $show.append(arr[i]+'<br/>');
+        }
+      });
+    });
+
+    $cry.on('click', function() {
+      $show.empty();
+      a['sheetTag'] = "龍泣碑";
+      console.log(a);
+      $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',a, function(data){
+        var d = data.split(',');  //把傳出來的字串分割成陣列
+        var arr = [];  
+        for(var i=0; i<(a.endRow-a.row+1); i++){
+          arr[i] = d.splice(0, (a.endCol-a.col+1)); 
+          $show.append(arr[i]+'<br/>');
+        }
+      });
+    });
+    
+    $train.on('click', function() {
+      $show.empty();
+      a['sheetTag'] = "訓練場";
+      console.log(a['sheetTag']);
+      $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',a, function(data){
+        var d = data.split(',');  //把傳出來的字串分割成陣列
+        var arr = [];  
+        for(var i=0; i<(a.endRow-a.row+1); i++){
+          arr[i] = d.splice(0, (a.endCol-a.col+1)); 
+          $show.append(arr[i]+'<br/>');
+        }
+      });
+    });
+    
+    $even.on('click', function() {
+      $show.empty();
+      a['sheetTag'] = "活動建築";
+      console.log(a['sheetTag']);
+      $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',a, function(data){
+        var d = data.split(',');  //把傳出來的字串分割成陣列
+        var arr = [];  
+        for(var i=0; i<(a.endRow-a.row+1); i++){
+          arr[i] = d.splice(0, (a.endCol-a.col+1)); 
+          $show.append(arr[i]+'<br/>');
+        }
+      });
+    });
+  });
 </script>

@@ -23,78 +23,101 @@
       sheetTag : '真龍建築',
       row: 4,
       col: 3,
-      endRow : 20,
+      endRow : 33,
+      endCol : 7
+    };
+    var b = {
+      sheetUrl : 'https://docs.google.com/spreadsheets/d/10Zqw0itl0gh0oewy5_I9LamZnICU5exQKCIAazlNBAQ/edit?usp=sharing',
+      sheetTag : '龍泣碑',
+      row: 4,
+      col: 3,
+      endRow : 23,
+      endCol : 7
+    };
+    var c = {
+      sheetUrl : 'https://docs.google.com/spreadsheets/d/10Zqw0itl0gh0oewy5_I9LamZnICU5exQKCIAazlNBAQ/edit?usp=sharing',
+      sheetTag : '訓練場',
+      row: 4,
+      col: 3,
+      endRow : 33,
+      endCol : 9
+    };
+    var d = {
+      sheetUrl : 'https://docs.google.com/spreadsheets/d/10Zqw0itl0gh0oewy5_I9LamZnICU5exQKCIAazlNBAQ/edit?usp=sharing',
+      sheetTag : '活動建築',
+      row: 4,
+      col: 3,
+      endRow : 33,
       endCol : 5
     };
     var $High = $('#High');
     var $cry = $('#cry');
     var $train = $('#train');
     var $even = $('#even');
-    var shwo_High = "";
+    var $show_High = "";
+    var $show_cry = "";
+    var $show_train = "";
+    var $show_even = "";
+    
+    $show.text("Loading...");
 
     $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',a, function(data){
-      var d = data.split(',');  //把傳出來的字串分割成陣列
-      var arr = [];  
+      var my_data = data.split(',');  //把傳出來的字串分割成陣列
+      var arr = [];
       for(var i=0; i<(a.endRow-a.row+1); i++){
-        arr[i] = d.splice(0, (a.endCol-a.col+1)); 
-        $show.append(arr[i]+'<br/>');
+        arr[i] = my_data.splice(0, (a.endCol-a.col+1)); 
+        $show_High += (arr[i]+'<br/>');
       }
     });
+    
+    $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',b, function(data){
+      console.log(data);
+      var my_data = data.split(',');  //把傳出來的字串分割成陣列
+      var arr = [];
+      for(var i=0; i<(b.endRow-b.row+1); i++){
+        arr[i] = my_data.splice(0, (b.endCol-b.col+1)); 
+        $show_cry += (arr[i]+'<br/>');
+      }
+    });
+    
+    $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',c, function(data){
+      var my_data = data.split(',');  //把傳出來的字串分割成陣列
+      var arr = [];
+      for(var i=0; i<(c.endRow-c.row+1); i++){
+        arr[i] = my_data.splice(0, (c.endCol-c.col+1)); 
+        $show_train += (arr[i]+'<br/>');
+      }
+    });
+    
+    $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',d, function(data){
+      var my_data = data.split(',');  //把傳出來的字串分割成陣列
+      var arr = [];
+      for(var i=0; i<(d.endRow-d.row+1); i++){
+        arr[i] = my_data.splice(0, (d.endCol-d.col+1)); 
+        $show_even += (arr[i]+'<br/>');
+      }
+    });
+    
+    $show.text("");
 
     $High.on('click', function() {
       $show.empty();
-      a['sheetTag'] = "真龍建築";
-      console.log(a);
-      $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',a, function(data){
-        var d = data.split(',');  //把傳出來的字串分割成陣列
-        var arr = [];  
-        for(var i=0; i<(a.endRow-a.row+1); i++){
-          arr[i] = d.splice(0, (a.endCol-a.col+1)); 
-          $show.append(arr[i]+'<br/>');
-        }
-      });
+      $show.html($show_High);
     });
 
     $cry.on('click', function() {
       $show.empty();
-      a['sheetTag'] = "龍泣碑";
-      console.log(a);
-      $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',a, function(data){
-        var d = data.split(',');  //把傳出來的字串分割成陣列
-        var arr = [];  
-        for(var i=0; i<(a.endRow-a.row+1); i++){
-          arr[i] = d.splice(0, (a.endCol-a.col+1)); 
-          $show.append(arr[i]+'<br/>');
-        }
-      });
+      $show.html($show_cry);
     });
     
     $train.on('click', function() {
       $show.empty();
-      a['sheetTag'] = "訓練場";
-      console.log(a['sheetTag']);
-      $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',a, function(data){
-        var d = data.split(',');  //把傳出來的字串分割成陣列
-        var arr = [];  
-        for(var i=0; i<(a.endRow-a.row+1); i++){
-          arr[i] = d.splice(0, (a.endCol-a.col+1)); 
-          $show.append(arr[i]+'<br/>');
-        }
-      });
+      $show.html($show_train);
     });
     
     $even.on('click', function() {
       $show.empty();
-      a['sheetTag'] = "活動建築";
-      console.log(a['sheetTag']);
-      $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',a, function(data){
-        var d = data.split(',');  //把傳出來的字串分割成陣列
-        var arr = [];  
-        for(var i=0; i<(a.endRow-a.row+1); i++){
-          arr[i] = d.splice(0, (a.endCol-a.col+1)); 
-          $show.append(arr[i]+'<br/>');
-        }
-      });
+      $show.html($show_even);
     });
   });
 </script>

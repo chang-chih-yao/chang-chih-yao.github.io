@@ -13,3 +13,23 @@
   <button id="b">儲存</button>
 </body>
 </html>
+
+<script>
+    $(function() {
+        var $a1 = $('#a1'),
+            $a2 = $('#a2'),
+            $a3 = $('#a3'),
+            $b = $('#b'),
+            a = {};
+
+        $b.on('click', function() {
+            a = {
+                data: $a1.val()+','+ $a2.val()+','+$a3.val(),
+                sheetUrl: 'https://docs.google.com/spreadsheets/d/1b9mrL6sn9pgyOvzzW0O18rMpZK1vdhN3Xa65XlHXvJ8/edit?usp=sharing',
+                sheetTag: '工作表1'
+            };
+            console.log(a);
+            $.get('https://script.google.com/macros/s/AKfycbz13aIL9v0BW3etdaKdbf0cb7b6hlm5JVbaAZ1Zd9uTWbciMB0/exec', a);
+        });
+    });
+</script>

@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width">
   <title>龍伴建築試算</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <style>
+    table, th, td{
+      border:2px solid white;
+      border-collapse:collapse;
+      text-align:center;
+      background-color:#DDDDDD
+    }
+    th{
+      background-color:purple;
+      color:white;
+    }
+  </style>
 </head>
 <body>
   <button id="High">真龍建築</button>
@@ -13,9 +25,14 @@
   <button id="even">活動建築</button>
   <br/>
   <br/>
+  <span style="font-size:14px;">距離30等還需要的素材 and 時間：</span>
+  <br/>
   <span style="font-size:14px;">目前建築等級：</span>
   <select id=theList></select>
-  <table border="1" width="100" id="my_table1"></table> 
+  <table border="2" width="400" id="my_table2"></table> 
+  <h3 id="button_tag"></h3>
+  <table border="2" width="400" id="my_table1"></table> 
+  
   <h3 id="show">Loading...</h3>
 </body>
 </html>
@@ -31,7 +48,7 @@
       sheetUrl : 'https://docs.google.com/spreadsheets/d/10Zqw0itl0gh0oewy5_I9LamZnICU5exQKCIAazlNBAQ/edit?usp=sharing',
       sheetTag : '真龍建築',
       row: 4,
-      col: 3,
+      col: 2,
       endRow : 33,
       endCol : 7
     };
@@ -39,7 +56,7 @@
       sheetUrl : 'https://docs.google.com/spreadsheets/d/10Zqw0itl0gh0oewy5_I9LamZnICU5exQKCIAazlNBAQ/edit?usp=sharing',
       sheetTag : '龍泣碑',
       row: 4,
-      col: 3,
+      col: 2,
       endRow : 23,
       endCol : 7
     };
@@ -47,7 +64,7 @@
       sheetUrl : 'https://docs.google.com/spreadsheets/d/10Zqw0itl0gh0oewy5_I9LamZnICU5exQKCIAazlNBAQ/edit?usp=sharing',
       sheetTag : '訓練場',
       row: 4,
-      col: 3,
+      col: 2,
       endRow : 33,
       endCol : 9
     };
@@ -55,11 +72,12 @@
       sheetUrl : 'https://docs.google.com/spreadsheets/d/10Zqw0itl0gh0oewy5_I9LamZnICU5exQKCIAazlNBAQ/edit?usp=sharing',
       sheetTag : '活動建築',
       row: 4,
-      col: 3,
+      col: 2,
       endRow : 33,
       endCol : 5
     };
     
+    var $button_tag = $('#button_tag');
     var $show = $('#show');
     var $High = $('#High');
     var $cry = $('#cry');
@@ -84,20 +102,35 @@
       }
     }
     
+    var my_Title = new Array();
+    my_Title.push(["(升到此)等級", "升級花費", "勇武晶石", "龍麟", "龍爪石", "時間"]);
+    my_Title.push(["(升到此)等級", "升級花費", "龍晶石", "龍麟", "龍爪石", "時間"]);
+    my_Title.push(["(升到此)等級", "升級花費", "銅幣", "銀幣", "金幣", "銀勳章", "金勳章", "時間"]);
+    my_Title.push(["(升到此)等級", "升級花費", "活動素材", "時間"]);
     
-    var myArray = [[1,2,3],[4,5,6],[7,8,9]]; 
+    var t = document.getElementById("my_table1");
+    var columnCount = my_Title[0].length;
+    var row = t.insertRow(-1);
+    for (var i = 0; i < columnCount; i++) {
+      var headerCell = document.createElement("TH");
+      headerCell.innerHTML = "Hi";
+      row.appendChild(headerCell);
+    }
+    
+    /*var myArray = [[1,2,3],[4,5,6],[7,8,9]]; 
     var t = document.getElementById("my_table1"); 
-    for(var i=0;i<myArray.length;i++) { 
-       t.insertRow(); 
-       for(var j=0;j<myArray[i].length;j++) { 
-          t.rows[i].insertCell(j); 
-          t.rows[i].cells[j].innerText = myArray[i][j]; 
-       }    
-    } 
+    for(var i=0;i<myArray.length;i++) {
+      t.insertRow(); 
+      for(var j=0;j<myArray[i].length;j++) { 
+        t.rows[i].insertCell(j); 
+        t.rows[i].cells[j].innerText = myArray[i][j]; 
+      }    
+    }*/
     
 
     $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',a, function(data){
       var my_data = data.split(',');  //把傳出來的字串分割成陣列
+      data_a = my_data.slice();
       var arr = [];
       for(var i=0; i<(a.endRow-a.row+1); i++){
         arr[i] = my_data.splice(0, (a.endCol-a.col+1)); 
@@ -108,6 +141,7 @@
     
     $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',b, function(data){
       var my_data = data.split(',');  //把傳出來的字串分割成陣列
+      data_b = my_data.slice();
       var arr = [];
       for(var i=0; i<(b.endRow-b.row+1); i++){
         arr[i] = my_data.splice(0, (b.endCol-b.col+1)); 
@@ -118,6 +152,7 @@
     
     $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',c, function(data){
       var my_data = data.split(',');  //把傳出來的字串分割成陣列
+      data_c = my_data.slice();
       var arr = [];
       for(var i=0; i<(c.endRow-c.row+1); i++){
         arr[i] = my_data.splice(0, (c.endCol-c.col+1)); 
@@ -128,6 +163,7 @@
     
     $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',d, function(data){
       var my_data = data.split(',');  //把傳出來的字串分割成陣列
+      data_d = my_data.slice();
       var arr = [];
       for(var i=0; i<(d.endRow-d.row+1); i++){
         arr[i] = my_data.splice(0, (d.endCol-d.col+1)); 
@@ -139,35 +175,74 @@
     
     $High.on('click', function() {
       $show.empty();
-      $show.html($show_High);
-      var i;
-      for(i = theList.options.length - 1 ; i >= 0 ; i--){
+      //$show.html($show_High);
+      for(var i = theList.options.length - 1 ; i >= 0 ; i--){
         theList.remove(i);
       }
       for(var j = 0; j < (a.endRow - a.row +1); j++){
         var index=theList.options.length;
         theList.options[index]=new Option(j, j);
       }
+      
+      var Parent = document.getElementById("my_table1");
+      while(Parent.hasChildNodes()) {
+        Parent.removeChild(Parent.firstChild);
+      }
+      var columnCount = my_Title[0].length;
+      var row = Parent.insertRow(-1);
+      for (var i = 0; i < columnCount; i++) {
+        var headerCell = document.createElement("TH");
+        headerCell.innerHTML = my_Title[0][i];
+        row.appendChild(headerCell);
+      }
+      for(var i=0;i<(a.endRow-a.row+1);i++) {
+        Parent.insertRow(); 
+        for(var j=0;j<(a.endCol-a.col+1);j++) { 
+          Parent.rows[i+1].insertCell(j); 
+          Parent.rows[i+1].cells[j].innerText = data_a[i*(a.endCol-a.col+1)+j]; 
+        }    
+      }
+      $button_tag.empty();
+      $button_tag.text("真龍建築，所有素材一覽表：");
     });
 
     $cry.on('click', function() {
       $show.empty();
-      $show.html($show_cry);
-      var i;
-      for(i = theList.options.length - 1 ; i >= 0 ; i--){
+      //$show.html($show_cry);
+      for(var i = theList.options.length - 1 ; i >= 0 ; i--){
         theList.remove(i);
       }
       for(var j = 0; j < (b.endRow - b.row +1); j++){
         var index=theList.options.length;
         theList.options[index]=new Option(j, j);
       }
+      
+      var Parent = document.getElementById("my_table1");
+      while(Parent.hasChildNodes()) {
+        Parent.removeChild(Parent.firstChild);
+      }
+      var columnCount = my_Title[1].length;
+      var row = Parent.insertRow(-1);
+      for (var i = 0; i < columnCount; i++) {
+        var headerCell = document.createElement("TH");
+        headerCell.innerHTML = my_Title[1][i];
+        row.appendChild(headerCell);
+      }
+      for(var i=0;i<(b.endRow-b.row+1);i++) {
+        Parent.insertRow(); 
+        for(var j=0;j<(b.endCol-b.col+1);j++) { 
+          Parent.rows[i+1].insertCell(j); 
+          Parent.rows[i+1].cells[j].innerText = data_b[i*(b.endCol-b.col+1)+j]; 
+        }    
+      }
+      $button_tag.empty();
+      $button_tag.text("龍泣碑，所有素材一覽表：");
     });
     
     $train.on('click', function() {
       $show.empty();
-      $show.html($show_train);
-      var i;
-      for(i = theList.options.length - 1 ; i >= 0 ; i--){
+      //$show.html($show_train);
+      for(var i = theList.options.length - 1 ; i >= 0 ; i--){
         theList.remove(i);
       }
       for(var j = 0; j < (c.endRow - c.row +1); j++){
@@ -178,9 +253,8 @@
     
     $even.on('click', function() {
       $show.empty();
-      $show.html($show_even);
-      var i;
-      for(i = theList.options.length - 1 ; i >= 0 ; i--){
+      //$show.html($show_even);
+      for(var i = theList.options.length - 1 ; i >= 0 ; i--){
         theList.remove(i);
       }
       for(var j = 0; j < (d.endRow - d.row +1); j++){
@@ -188,5 +262,60 @@
         theList.options[index]=new Option(j, j);
       }
     });
+    
+    /*function change_list(){
+      console.log(theList.options[theList.selectedIndex]).text;
+    }*/
+    
+    $('select').on('change', function() {
+      var Parent = document.getElementById("my_table2");
+      while(Parent.hasChildNodes()) {
+        Parent.removeChild(Parent.firstChild);
+      }
+      
+      var my_array = [0,0,0,0,0,0,0,0];
+      
+      if($button_tag.text() == "真龍建築，所有素材一覽表："){
+        var columnCount = my_Title[0].length;
+        var row = Parent.insertRow(-1);
+        for (var i = 0; i < columnCount; i++) {
+          var headerCell = document.createElement("TH");
+          headerCell.innerHTML = my_Title[0][i];
+          row.appendChild(headerCell);
+        }
+
+        for(var i=this.value;i<(a.endRow-a.row+1);i++) {
+          for(var j=0;j<(a.endCol-a.col+1);j++) { 
+            my_array[j] += parseInt(data_a[i*(a.endCol-a.col+1)+j]);
+          }    
+        }
+        Parent.insertRow();
+        for(var j=0;j<(a.endCol-a.col+1);j++) {
+          Parent.rows[1].insertCell(j); 
+          Parent.rows[1].cells[j].innerText = my_array[j];
+        }
+      }
+      else if ($button_tag.text() == "龍泣碑，所有素材一覽表："){
+        var columnCount = my_Title[1].length;
+        var row = Parent.insertRow(-1);
+        for (var i = 0; i < columnCount; i++) {
+          var headerCell = document.createElement("TH");
+          headerCell.innerHTML = my_Title[1][i];
+          row.appendChild(headerCell);
+        }
+
+        for(var i=this.value;i<(b.endRow-b.row+1);i++) {
+          for(var j=0;j<(b.endCol-b.col+1);j++) { 
+            my_array[j] += parseInt(data_b[i*(b.endCol-b.col+1)+j]);
+          }    
+        }
+        Parent.insertRow();
+        for(var j=0;j<(b.endCol-b.col+1);j++) {
+          Parent.rows[1].insertCell(j); 
+          Parent.rows[1].cells[j].innerText = my_array[j];
+        }
+      }
+    });
+    
   });
 </script>

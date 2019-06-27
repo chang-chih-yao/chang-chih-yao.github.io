@@ -11,6 +11,11 @@
   <button id="cry">龍泣碑</button>
   <button id="train">訓練場</button>
   <button id="even">活動建築</button>
+  <br/>
+  <br/>
+  <span style="font-size:14px;">目前建築等級：</span>
+  <select id=theList></select>
+  <table border="1" width="100" id="my_table1"></table> 
   <h3 id="show">Loading...</h3>
 </body>
 </html>
@@ -78,7 +83,17 @@
         clearInterval(my_time);
       }
     }
-        
+    
+    
+    var myArray = [[1,2,3],[4,5,6],[7,8,9]]; 
+    var t = document.getElementById("my_table1"); 
+    for(var i=0;i<myArray.length;i++) { 
+       t.insertRow(); 
+       for(var j=0;j<myArray[i].length;j++) { 
+          t.rows[i].insertCell(j); 
+          t.rows[i].cells[j].innerText = myArray[i][j]; 
+       }    
+    } 
     
 
     $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',a, function(data){
@@ -125,21 +140,53 @@
     $High.on('click', function() {
       $show.empty();
       $show.html($show_High);
+      var i;
+      for(i = theList.options.length - 1 ; i >= 0 ; i--){
+        theList.remove(i);
+      }
+      for(var j = 0; j < (a.endRow - a.row +1); j++){
+        var index=theList.options.length;
+        theList.options[index]=new Option(j, j);
+      }
     });
 
     $cry.on('click', function() {
       $show.empty();
       $show.html($show_cry);
+      var i;
+      for(i = theList.options.length - 1 ; i >= 0 ; i--){
+        theList.remove(i);
+      }
+      for(var j = 0; j < (b.endRow - b.row +1); j++){
+        var index=theList.options.length;
+        theList.options[index]=new Option(j, j);
+      }
     });
     
     $train.on('click', function() {
       $show.empty();
       $show.html($show_train);
+      var i;
+      for(i = theList.options.length - 1 ; i >= 0 ; i--){
+        theList.remove(i);
+      }
+      for(var j = 0; j < (c.endRow - c.row +1); j++){
+        var index=theList.options.length;
+        theList.options[index]=new Option(j, j);
+      }
     });
     
     $even.on('click', function() {
       $show.empty();
       $show.html($show_even);
+      var i;
+      for(i = theList.options.length - 1 ; i >= 0 ; i--){
+        theList.remove(i);
+      }
+      for(var j = 0; j < (d.endRow - d.row +1); j++){
+        var index=theList.options.length;
+        theList.options[index]=new Option(j, j);
+      }
     });
   });
 </script>

@@ -198,6 +198,12 @@
       for (var i = 0; i < columnCount; i++) {
         var headerCell = document.createElement("TH");
         headerCell.innerHTML = my_Title[0][i];
+        if (i == 2){
+          var _img = document.createElement("img");
+          _img.setAttribute("id", "my_img_1");
+   		    _img.setAttribute("src", "images/勇武晶石.JPG");
+          headerCell.appendChild(_img);
+        }
         row.appendChild(headerCell);
       }
       for(var i=0;i<(a.endRow-a.row+1);i++) {

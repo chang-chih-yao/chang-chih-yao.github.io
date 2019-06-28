@@ -333,8 +333,8 @@
           }    
         }
         Parent.insertRow();
-        Parent.rows[1].insertCell(j);
-        Parent.rows[1].cells[j].innerText = "";
+        Parent.rows[1].insertCell(0);
+        Parent.rows[1].cells[0].innerText = " ";
         for(var j=1;j<(a.endCol-a.col+1);j++) {
           Parent.rows[1].insertCell(j); 
           Parent.rows[1].cells[j].innerText = my_array[j];
@@ -355,8 +355,8 @@
           }    
         }
         Parent.insertRow();
-        Parent.rows[1].insertCell(j);
-        Parent.rows[1].cells[j].innerText = "";
+        Parent.rows[1].insertCell(0);
+        Parent.rows[1].cells[0].innerText = " ";
         for(var j=1;j<(b.endCol-b.col+1);j++) {
           Parent.rows[1].insertCell(j); 
           Parent.rows[1].cells[j].innerText = my_array[j];

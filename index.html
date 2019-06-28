@@ -13,7 +13,7 @@
       background-color:#DDDDDD
     }
     th{
-      background-color:purple;
+      background-color:#b300b3;
       color:white;
     }
     hr {
@@ -28,11 +28,11 @@
   </style>
 </head>
 <body>
-  <button id="High">真龍建築</button>
-  <button id="cry">龍泣碑</button>
-  <button id="train">訓練場</button>
-  <button id="altar">祭壇</button>
-  <button id="even">活動建築</button>
+    <button id="High" style="background-color:#e6e6e6;">真龍建築</button>
+    <button id="cry" style="background-color:#e6e6e6;">龍泣碑</button>
+    <button id="train" style="background-color:#e6e6e6;">訓練場</button>
+    <button id="altar" style="background-color:#e6e6e6;">祭壇</button>
+    <button id="even" style="background-color:#e6e6e6;">活動建築</button>
   <br/>
   <br/>
   <h3 id="show">Loading...</h3>
@@ -125,7 +125,7 @@
         document.getElementById('train').disabled=false;
         document.getElementById('altar').disabled=false;
         document.getElementById('even').disabled=false;
-        viewer();
+        //viewer();
         clearInterval(my_time);
       }
     }
@@ -219,6 +219,11 @@
     
     
     $High.on('click', function() {
+      document.getElementById('High').style.background = "#ffb3ff";
+      document.getElementById('cry').style.background = "#e6e6e6";
+      document.getElementById('train').style.background = "#e6e6e6";
+      document.getElementById('altar').style.background = "#e6e6e6";
+      document.getElementById('even').style.background = "#e6e6e6";
       document.getElementById('theList').style.visibility = "visible";
       $now_lv.text("目前建築等級：");
       $show.empty();
@@ -284,6 +289,11 @@
     });
 
     $cry.on('click', function() {
+      document.getElementById('High').style.background = "#e6e6e6";
+      document.getElementById('cry').style.background = "#ffb3ff";
+      document.getElementById('train').style.background = "#e6e6e6";
+      document.getElementById('altar').style.background = "#e6e6e6";
+      document.getElementById('even').style.background = "#e6e6e6";
       document.getElementById('theList').style.visibility = "visible";
       $now_lv.text("目前建築等級：");
       $show.empty();
@@ -349,6 +359,11 @@
     });
     
     $train.on('click', function() {
+      document.getElementById('High').style.background = "#e6e6e6";
+      document.getElementById('cry').style.background = "#e6e6e6";
+      document.getElementById('train').style.background = "#ffb3ff";
+      document.getElementById('altar').style.background = "#e6e6e6";
+      document.getElementById('even').style.background = "#e6e6e6";
       document.getElementById('theList').style.visibility = "visible";
       $now_lv.text("目前建築等級：");
       $show.empty();
@@ -429,6 +444,11 @@
     });
 
     $altar.on('click', function() {
+      document.getElementById('High').style.background = "#e6e6e6";
+      document.getElementById('cry').style.background = "#e6e6e6";
+      document.getElementById('train').style.background = "#e6e6e6";
+      document.getElementById('altar').style.background = "#ffb3ff";
+      document.getElementById('even').style.background = "#e6e6e6";
       document.getElementById('theList').style.visibility = "visible";
       $now_lv.text("目前建築等級：");
       $show.empty();
@@ -494,6 +514,11 @@
     });
     
     $even.on('click', function() {
+      document.getElementById('High').style.background = "#e6e6e6";
+      document.getElementById('cry').style.background = "#e6e6e6";
+      document.getElementById('train').style.background = "#e6e6e6";
+      document.getElementById('altar').style.background = "#e6e6e6";
+      document.getElementById('even').style.background = "#ffb3ff";
       document.getElementById('theList').style.visibility = "visible";
       $now_lv.text("目前建築等級：");
       $show.empty();

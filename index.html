@@ -204,7 +204,6 @@
           _img.style.width = "50px";
           _img.style.height = "50px";
           headerCell.appendChild(_img);
-          row.appendChild(headerCell);
         }
         if (i == 3){
           var _img = document.createElement("img");
@@ -212,7 +211,6 @@
           _img.style.width = "50px";
           _img.style.height = "50px";
           headerCell.appendChild(_img);
-          row.appendChild(headerCell);
         }
         if (i == 4){
           var _img = document.createElement("img");
@@ -220,8 +218,8 @@
           _img.style.width = "50px";
           _img.style.height = "50px";
           headerCell.appendChild(_img);
-          row.appendChild(headerCell);
         }
+        row.appendChild(headerCell);
       }
       for(var i=0;i<(a.endRow-a.row+1);i++) {
         Parent.insertRow(); 

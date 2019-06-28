@@ -184,6 +184,11 @@
         theList.options[index]=new Option(j, j);
       }
       
+      var small_table = document.getElementById("my_table2");
+      while(small_table.hasChildNodes()) {
+        small_table.removeChild(small_table.firstChild);
+      }
+      
       var Parent = document.getElementById("my_table1");
       while(Parent.hasChildNodes()) {
         Parent.removeChild(Parent.firstChild);
@@ -215,6 +220,11 @@
       for(var j = 0; j < (b.endRow - b.row +1); j++){
         var index=theList.options.length;
         theList.options[index]=new Option(j, j);
+      }
+      
+      var small_table = document.getElementById("my_table2");
+      while(small_table.hasChildNodes()) {
+        small_table.removeChild(small_table.firstChild);
       }
       
       var Parent = document.getElementById("my_table1");

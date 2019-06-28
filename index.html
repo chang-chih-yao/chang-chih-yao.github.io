@@ -26,14 +26,13 @@
   <button id="even">活動建築</button>
   <br/>
   <br/>
-  <h3 >距離30等還需要的素材 and 時間：</h3>
+  <h3 id="show">Loading...</h3>
+  <h3 id="zzz"></h3>
   <span style="font-size:14px;">目前建築等級：</span>
   <select id=theList></select>
   <table border="2" width="400" id="my_table2"></table> 
   <h3 id="button_tag"></h3>
   <table border="2" width="400" id="my_table1"></table> 
-  
-  <h3 id="show">Loading...</h3>
 </body>
 </html>
 
@@ -87,6 +86,7 @@
     };
     
     var $button_tag = $('#button_tag');
+    var $zzz = $('#zzz');
     var $show = $('#show');
     var $High = $('#High');
     var $cry = $('#cry');
@@ -136,33 +136,33 @@
     $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',a, function(data){
       var my_data = data.split(',');  //把傳出來的字串分割成陣列
       data_a = my_data.slice();
-      var arr = [];
+      /*var arr = [];
       for(var i=0; i<(a.endRow-a.row+1); i++){
         arr[i] = my_data.splice(0, (a.endCol-a.col+1)); 
         $show_High += (arr[i]+'<br/>');
-      }
+      }*/
       cou += 1;
     });
     
     $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',b, function(data){
       var my_data = data.split(',');  //把傳出來的字串分割成陣列
       data_b = my_data.slice();
-      var arr = [];
+      /*var arr = [];
       for(var i=0; i<(b.endRow-b.row+1); i++){
         arr[i] = my_data.splice(0, (b.endCol-b.col+1)); 
         $show_cry += (arr[i]+'<br/>');
-      }
+      }*/
       cou += 1;
     });
     
     $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',c, function(data){
       var my_data = data.split(',');  //把傳出來的字串分割成陣列
       data_c = my_data.slice();
-      var arr = [];
+      /*var arr = [];
       for(var i=0; i<(c.endRow-c.row+1); i++){
         arr[i] = my_data.splice(0, (c.endCol-c.col+1)); 
         $show_train += (arr[i]+'<br/>');
-      }
+      }*/
       cou += 1;
     });
 
@@ -180,11 +180,11 @@
     $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',e, function(data){
       var my_data = data.split(',');  //把傳出來的字串分割成陣列
       data_e = my_data.slice();
-      var arr = [];
+      /*var arr = [];
       for(var i=0; i<(e.endRow-e.row+1); i++){
         arr[i] = my_data.splice(0, (e.endCol-e.col+1)); 
         $show_even += (arr[i]+'<br/>');
-      }
+      }*/
       cou += 1;
     });
     
@@ -246,6 +246,8 @@
       }
       $button_tag.empty();
       $button_tag.text("真龍建築，所有素材一覽表：");
+      $zzz.empty();
+      $zzz.text("真龍建築，距離滿等還需要的素材：");
     });
 
     $cry.on('click', function() {
@@ -305,6 +307,8 @@
       }
       $button_tag.empty();
       $button_tag.text("龍泣碑，所有素材一覽表：");
+      $zzz.empty();
+      $zzz.text("龍泣碑，距離滿等還需要的素材：");
     });
     
     $train.on('click', function() {
@@ -379,6 +383,8 @@
       }
       $button_tag.empty();
       $button_tag.text("訓練場，所有素材一覽表：");
+      $zzz.empty();
+      $zzz.text("訓練場，距離滿等還需要的素材：");
     });
 
     $altar.on('click', function() {
@@ -450,6 +456,34 @@
         var index=theList.options.length;
         theList.options[index]=new Option(j, j);
       }
+
+      var small_table = document.getElementById("my_table2");
+      while(small_table.hasChildNodes()) {
+        small_table.removeChild(small_table.firstChild);
+      }
+      
+      var Parent = document.getElementById("my_table1");
+      while(Parent.hasChildNodes()) {
+        Parent.removeChild(Parent.firstChild);
+      }
+      var columnCount = my_Title[4].length;
+      var row = Parent.insertRow(-1);
+      for (var i = 0; i < columnCount; i++) {
+        var headerCell = document.createElement("TH");
+        headerCell.innerHTML = my_Title[4][i];
+        row.appendChild(headerCell);
+      }
+      for(var i=0;i<(e.endRow-e.row+1);i++) {
+        Parent.insertRow(); 
+        for(var j=0;j<(e.endCol-e.col+1);j++) { 
+          Parent.rows[i+1].insertCell(j); 
+          Parent.rows[i+1].cells[j].innerText = data_e[i*(e.endCol-e.col+1)+j]; 
+        }    
+      }
+      $button_tag.empty();
+      $button_tag.text("活動建築，所有素材一覽表：");
+      $zzz.empty();
+      $zzz.text("活動建築，距離滿等還需要的素材：");
     });
     
     /*function change_list(){
@@ -548,6 +582,28 @@
         Parent.rows[1].insertCell(0);
         Parent.rows[1].cells[0].innerText = " ";
         for(var j=1;j<(d.endCol-d.col+1);j++) {
+          Parent.rows[1].insertCell(j); 
+          Parent.rows[1].cells[j].innerText = my_array[j];
+        }
+      }
+      else if ($button_tag.text() == "活動建築，所有素材一覽表："){
+        var columnCount = my_Title[4].length;
+        var row = Parent.insertRow(-1);
+        for (var i = 0; i < columnCount; i++) {
+          var headerCell = document.createElement("TH");
+          headerCell.innerHTML = my_Title[4][i];
+          row.appendChild(headerCell);
+        }
+
+        for(var i=this.value;i<(e.endRow-e.row+1);i++) {
+          for(var j=0;j<(e.endCol-e.col+1);j++) { 
+            my_array[j] += parseInt(data_e[i*(e.endCol-e.col+1)+j]);
+          }    
+        }
+        Parent.insertRow();
+        Parent.rows[1].insertCell(0);
+        Parent.rows[1].cells[0].innerText = " ";
+        for(var j=1;j<(e.endCol-e.col+1);j++) {
           Parent.rows[1].insertCell(j); 
           Parent.rows[1].cells[j].innerText = my_array[j];
         }

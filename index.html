@@ -113,7 +113,7 @@
     var img_size = "40px";
     var cou = 0;
     var now_time = new Date();
-    var now = now_time.getHours() + ':' + now_time.getMinutes() + ':' + now_time.getSeconds();
+    var now = now_time.getFullYear() + '/' + (now_time.getMonth()+1) + '/' + now_time.getDate() + ' ' + now_time.getHours() + ':' + now_time.getMinutes() + ':' + now_time.getSeconds();
     
     var my_time = setInterval(my_timer, 100);
     

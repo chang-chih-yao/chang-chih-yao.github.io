@@ -108,14 +108,6 @@
     my_Title.push(["等級", "升級花費", "銅幣<br/>", "銀幣<br/>", "金幣<br/>", "銀勳章<br/>", "金勳章<br/>", "時間"]);
     my_Title.push(["等級", "升級花費", "活動素材", "時間"]);
     
-    var t = document.getElementById("my_table1");
-    var columnCount = my_Title[0].length;
-    var row = t.insertRow(-1);
-    for (var i = 0; i < columnCount; i++) {
-      var headerCell = document.createElement("TH");
-      headerCell.innerHTML = "Hi";
-      row.appendChild(headerCell);
-    }
     
     /*var myArray = [[1,2,3],[4,5,6],[7,8,9]]; 
     var t = document.getElementById("my_table1"); 
@@ -207,7 +199,7 @@
         }
         if (i == 3){
           var _img = document.createElement("img");
-   		    _img.setAttribute("src", "images/龍麟.JPG");
+   		    _img.setAttribute("src", "images/龍麟_金.JPG");
           _img.style.width = "50px";
           _img.style.height = "50px";
           headerCell.appendChild(_img);
@@ -257,6 +249,27 @@
       for (var i = 0; i < columnCount; i++) {
         var headerCell = document.createElement("TH");
         headerCell.innerHTML = my_Title[1][i];
+        if (i == 2){
+          var _img = document.createElement("img");
+   		    _img.setAttribute("src", "images/龍晶石.JPG");
+          _img.style.width = "50px";
+          _img.style.height = "50px";
+          headerCell.appendChild(_img);
+        }
+        if (i == 3){
+          var _img = document.createElement("img");
+   		    _img.setAttribute("src", "images/龍麟_銀.JPG");
+          _img.style.width = "50px";
+          _img.style.height = "50px";
+          headerCell.appendChild(_img);
+        }
+        if (i == 4){
+          var _img = document.createElement("img");
+   		    _img.setAttribute("src", "images/龍爪石.JPG");
+          _img.style.width = "50px";
+          _img.style.height = "50px";
+          headerCell.appendChild(_img);
+        }
         row.appendChild(headerCell);
       }
       for(var i=0;i<(b.endRow-b.row+1);i++) {

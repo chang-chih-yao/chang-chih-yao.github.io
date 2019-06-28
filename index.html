@@ -292,6 +292,68 @@
         var index=theList.options.length;
         theList.options[index]=new Option(j, j);
       }
+
+      var small_table = document.getElementById("my_table2");
+      while(small_table.hasChildNodes()) {
+        small_table.removeChild(small_table.firstChild);
+      }
+      
+      var Parent = document.getElementById("my_table1");
+      while(Parent.hasChildNodes()) {
+        Parent.removeChild(Parent.firstChild);
+      }
+      var columnCount = my_Title[2].length;
+      var row = Parent.insertRow(-1);
+      for (var i = 0; i < columnCount; i++) {
+        var headerCell = document.createElement("TH");
+        headerCell.innerHTML = my_Title[2][i];
+        if (i == 2){
+          var _img = document.createElement("img");
+   		    _img.setAttribute("src", "images/銅幣.JPG");
+          _img.style.width = "50px";
+          _img.style.height = "50px";
+          headerCell.appendChild(_img);
+        }
+        else if (i == 3){
+          var _img = document.createElement("img");
+   		    _img.setAttribute("src", "images/銀幣.JPG");
+          _img.style.width = "50px";
+          _img.style.height = "50px";
+          headerCell.appendChild(_img);
+        }
+        else if (i == 4){
+          var _img = document.createElement("img");
+   		    _img.setAttribute("src", "images/金幣.JPG");
+          _img.style.width = "50px";
+          _img.style.height = "50px";
+          headerCell.appendChild(_img);
+        }
+        else if (i == 5){
+          var _img = document.createElement("img");
+   		    _img.setAttribute("src", "images/銀勳章.JPG");
+          _img.style.width = "50px";
+          _img.style.height = "50px";
+          headerCell.appendChild(_img);
+        }
+        else if (i == 6){
+          var _img = document.createElement("img");
+   		    _img.setAttribute("src", "images/金勳章.JPG");
+          _img.style.width = "50px";
+          _img.style.height = "50px";
+          headerCell.appendChild(_img);
+        }
+
+        row.appendChild(headerCell);
+      }
+      for(var i=0;i<(c.endRow-c.row+1);i++) {
+        Parent.insertRow(); 
+        for(var j=0;j<(c.endCol-c.col+1);j++) { 
+          Parent.rows[i+1].insertCell(j); 
+          Parent.rows[i+1].cells[j].innerText = data_c[i*(c.endCol-c.col+1)+j]; 
+        }    
+      }
+      $button_tag.empty();
+      $button_tag.text("訓練場，所有素材一覽表：");
     });
     
     $even.on('click', function() {
@@ -358,6 +420,28 @@
         Parent.rows[1].insertCell(0);
         Parent.rows[1].cells[0].innerText = " ";
         for(var j=1;j<(b.endCol-b.col+1);j++) {
+          Parent.rows[1].insertCell(j); 
+          Parent.rows[1].cells[j].innerText = my_array[j];
+        }
+      }
+      else if ($button_tag.text() == "訓練場，所有素材一覽表："){
+        var columnCount = my_Title[2].length;
+        var row = Parent.insertRow(-1);
+        for (var i = 0; i < columnCount; i++) {
+          var headerCell = document.createElement("TH");
+          headerCell.innerHTML = my_Title[2][i];
+          row.appendChild(headerCell);
+        }
+
+        for(var i=this.value;i<(c.endRow-c.row+1);i++) {
+          for(var j=0;j<(c.endCol-c.col+1);j++) { 
+            my_array[j] += parseInt(data_c[i*(c.endCol-c.col+1)+j]);
+          }    
+        }
+        Parent.insertRow();
+        Parent.rows[1].insertCell(0);
+        Parent.rows[1].cells[0].innerText = " ";
+        for(var j=1;j<(c.endCol-c.col+1);j++) {
           Parent.rows[1].insertCell(j); 
           Parent.rows[1].cells[j].innerText = my_array[j];
         }

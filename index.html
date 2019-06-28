@@ -112,6 +112,8 @@
     var $show_even = "";
     var img_size = "40px";
     var cou = 0;
+    var now_time = new Date();
+    var now = now_time.getHours() + ':' + now_time.getMinutes() + ':' + now_time.getSeconds();
     
     var my_time = setInterval(my_timer, 100);
     
@@ -123,8 +125,18 @@
         document.getElementById('train').disabled=false;
         document.getElementById('altar').disabled=false;
         document.getElementById('even').disabled=false;
+        viewer();
         clearInterval(my_time);
       }
+    }
+
+    function viewer(){
+      view_time = {
+        data: now + ',1',
+        sheetUrl: 'https://docs.google.com/spreadsheets/d/1b9mrL6sn9pgyOvzzW0O18rMpZK1vdhN3Xa65XlHXvJ8/edit?usp=sharing',
+        sheetTag: '工作表1'
+      };
+      $.get('https://script.google.com/macros/s/AKfycbz13aIL9v0BW3etdaKdbf0cb7b6hlm5JVbaAZ1Zd9uTWbciMB0/exec', view_time);
     }
     
     var my_Title = new Array();

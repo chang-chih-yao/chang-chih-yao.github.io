@@ -200,6 +200,10 @@
       }*/
       cou += 1;
     });
+
+    function High_img(){
+
+    }
     
     
     $High.on('click', function() {
@@ -238,14 +242,14 @@
           _img.style.height = img_size;
           headerCell.appendChild(_img);
         }
-        if (i == 3){
+        else if (i == 3){
           var _img = document.createElement("img");
    		    _img.setAttribute("src", "images/龍麟_金.JPG");
           _img.style.width = img_size;
           _img.style.height = img_size;
           headerCell.appendChild(_img);
         }
-        if (i == 4){
+        else if (i == 4){
           var _img = document.createElement("img");
    		    _img.setAttribute("src", "images/龍爪石.JPG");
           _img.style.width = img_size;
@@ -303,14 +307,14 @@
           _img.style.height = img_size;
           headerCell.appendChild(_img);
         }
-        if (i == 3){
+        else if (i == 3){
           var _img = document.createElement("img");
    		    _img.setAttribute("src", "images/龍麟_銀.JPG");
           _img.style.width = img_size;
           _img.style.height = img_size;
           headerCell.appendChild(_img);
         }
-        if (i == 4){
+        else if (i == 4){
           var _img = document.createElement("img");
    		    _img.setAttribute("src", "images/龍爪石.JPG");
           _img.style.width = img_size;
@@ -448,14 +452,14 @@
           _img.style.height = img_size;
           headerCell.appendChild(_img);
         }
-        if (i == 3){
+        else if (i == 3){
           var _img = document.createElement("img");
    		    _img.setAttribute("src", "images/銀珠.JPG");
           _img.style.width = img_size;
           _img.style.height = img_size;
           headerCell.appendChild(_img);
         }
-        if (i == 4){
+        else if (i == 4){
           var _img = document.createElement("img");
    		    _img.setAttribute("src", "images/金珠.JPG");
           _img.style.width = img_size;
@@ -539,6 +543,27 @@
         for (var i = 0; i < columnCount; i++) {
           var headerCell = document.createElement("TH");
           headerCell.innerHTML = my_Title[0][i];
+          if (i == 2){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/勇武晶石.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
+          else if (i == 3){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/龍麟_金.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
+          else if (i == 4){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/龍爪石.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
           row.appendChild(headerCell);
         }
 
@@ -561,6 +586,27 @@
         for (var i = 0; i < columnCount; i++) {
           var headerCell = document.createElement("TH");
           headerCell.innerHTML = my_Title[1][i];
+          if (i == 2){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/龍晶石.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
+          else if (i == 3){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/龍麟_銀.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
+          else if (i == 4){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/龍爪石.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
           row.appendChild(headerCell);
         }
 
@@ -583,6 +629,41 @@
         for (var i = 0; i < columnCount; i++) {
           var headerCell = document.createElement("TH");
           headerCell.innerHTML = my_Title[2][i];
+          if (i == 2){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/銅幣.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
+          else if (i == 3){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/銀幣.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
+          else if (i == 4){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/金幣.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
+          else if (i == 5){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/銀勳章.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
+          else if (i == 6){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/金勳章.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
           row.appendChild(headerCell);
         }
 
@@ -605,6 +686,27 @@
         for (var i = 0; i < columnCount; i++) {
           var headerCell = document.createElement("TH");
           headerCell.innerHTML = my_Title[3][i];
+          if (i == 2){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/銅珠.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
+          else if (i == 3){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/銀珠.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
+          else if (i == 4){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/金珠.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
           row.appendChild(headerCell);
         }
 

@@ -391,6 +391,53 @@
         var index=theList.options.length;
         theList.options[index]=new Option(j, j);
       }
+
+      var small_table = document.getElementById("my_table2");
+      while(small_table.hasChildNodes()) {
+        small_table.removeChild(small_table.firstChild);
+      }
+      
+      var Parent = document.getElementById("my_table1");
+      while(Parent.hasChildNodes()) {
+        Parent.removeChild(Parent.firstChild);
+      }
+      var columnCount = my_Title[3].length;
+      var row = Parent.insertRow(-1);
+      for (var i = 0; i < columnCount; i++) {
+        var headerCell = document.createElement("TH");
+        headerCell.innerHTML = my_Title[3][i];
+        if (i == 2){
+          var _img = document.createElement("img");
+   		    _img.setAttribute("src", "images/龍晶石.JPG");
+          _img.style.width = img_size;
+          _img.style.height = img_size;
+          headerCell.appendChild(_img);
+        }
+        if (i == 3){
+          var _img = document.createElement("img");
+   		    _img.setAttribute("src", "images/龍麟_銀.JPG");
+          _img.style.width = img_size;
+          _img.style.height = img_size;
+          headerCell.appendChild(_img);
+        }
+        if (i == 4){
+          var _img = document.createElement("img");
+   		    _img.setAttribute("src", "images/龍爪石.JPG");
+          _img.style.width = img_size;
+          _img.style.height = img_size;
+          headerCell.appendChild(_img);
+        }
+        row.appendChild(headerCell);
+      }
+      for(var i=0;i<(d.endRow-d.row+1);i++) {
+        Parent.insertRow(); 
+        for(var j=0;j<(d.endCol-d.col+1);j++) { 
+          Parent.rows[i+1].insertCell(j); 
+          Parent.rows[i+1].cells[j].innerText = data_d[i*(d.endCol-d.col+1)+j]; 
+        }    
+      }
+      $button_tag.empty();
+      $button_tag.text("祭壇，所有素材一覽表：");
     });
     
     $even.on('click', function() {
@@ -479,6 +526,28 @@
         Parent.rows[1].insertCell(0);
         Parent.rows[1].cells[0].innerText = " ";
         for(var j=1;j<(c.endCol-c.col+1);j++) {
+          Parent.rows[1].insertCell(j); 
+          Parent.rows[1].cells[j].innerText = my_array[j];
+        }
+      }
+      else if ($button_tag.text() == "祭壇，所有素材一覽表："){
+        var columnCount = my_Title[3].length;
+        var row = Parent.insertRow(-1);
+        for (var i = 0; i < columnCount; i++) {
+          var headerCell = document.createElement("TH");
+          headerCell.innerHTML = my_Title[3][i];
+          row.appendChild(headerCell);
+        }
+
+        for(var i=this.value;i<(d.endRow-d.row+1);i++) {
+          for(var j=0;j<(d.endCol-d.col+1);j++) { 
+            my_array[j] += parseInt(data_d[i*(d.endCol-d.col+1)+j]);
+          }    
+        }
+        Parent.insertRow();
+        Parent.rows[1].insertCell(0);
+        Parent.rows[1].cells[0].innerText = " ";
+        for(var j=1;j<(d.endCol-d.col+1);j++) {
           Parent.rows[1].insertCell(j); 
           Parent.rows[1].cells[j].innerText = my_array[j];
         }

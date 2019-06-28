@@ -16,6 +16,15 @@
       background-color:purple;
       color:white;
     }
+    hr {
+      display: block;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      margin-left: auto;
+      margin-right: auto;
+      border-style: solid;
+      border-width: 2px;
+    }
   </style>
 </head>
 <body>
@@ -28,9 +37,10 @@
   <br/>
   <h3 id="show">Loading...</h3>
   <h3 id="zzz"></h3>
-  <span style="font-size:14px;">目前建築等級：</span>
+  <span id="now_lv"></span>
   <select id=theList></select>
   <table border="2" width="400" id="my_table2"></table> 
+  <hr>
   <h3 id="button_tag"></h3>
   <table border="2" width="400" id="my_table1"></table> 
 </body>
@@ -38,6 +48,7 @@
 
 <script>
   $(function(){
+    document.getElementById('theList').style.visibility = "hidden";
     document.getElementById('High').disabled=true;
     document.getElementById('cry').disabled=true;
     document.getElementById('train').disabled=true;
@@ -88,6 +99,8 @@
     var $button_tag = $('#button_tag');
     var $zzz = $('#zzz');
     var $show = $('#show');
+    var $now_lv = $('#now_lv');
+
     var $High = $('#High');
     var $cry = $('#cry');
     var $train = $('#train');
@@ -104,7 +117,7 @@
     
     function my_timer(){
       if (cou == 5){
-        $show.text("Successful");
+        $show.text("Successful Loading！");
         document.getElementById('High').disabled=false;
         document.getElementById('cry').disabled=false;
         document.getElementById('train').disabled=false;
@@ -190,6 +203,8 @@
     
     
     $High.on('click', function() {
+      document.getElementById('theList').style.visibility = "visible";
+      $now_lv.text("目前建築等級：");
       $show.empty();
       //$show.html($show_High);
       for(var i = theList.options.length - 1 ; i >= 0 ; i--){
@@ -251,6 +266,8 @@
     });
 
     $cry.on('click', function() {
+      document.getElementById('theList').style.visibility = "visible";
+      $now_lv.text("目前建築等級：");
       $show.empty();
       //$show.html($show_cry);
       for(var i = theList.options.length - 1 ; i >= 0 ; i--){
@@ -312,6 +329,8 @@
     });
     
     $train.on('click', function() {
+      document.getElementById('theList').style.visibility = "visible";
+      $now_lv.text("目前建築等級：");
       $show.empty();
       //$show.html($show_train);
       for(var i = theList.options.length - 1 ; i >= 0 ; i--){
@@ -388,6 +407,8 @@
     });
 
     $altar.on('click', function() {
+      document.getElementById('theList').style.visibility = "visible";
+      $now_lv.text("目前建築等級：");
       $show.empty();
       //$show.html($show_even);
       for(var i = theList.options.length - 1 ; i >= 0 ; i--){
@@ -449,6 +470,8 @@
     });
     
     $even.on('click', function() {
+      document.getElementById('theList').style.visibility = "visible";
+      $now_lv.text("目前建築等級：");
       $show.empty();
       //$show.html($show_even);
       for(var i = theList.options.length - 1 ; i >= 0 ; i--){

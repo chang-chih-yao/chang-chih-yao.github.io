@@ -328,11 +328,13 @@
         }
 
         for(var i=this.value;i<(a.endRow-a.row+1);i++) {
-          for(var j=0;j<(a.endCol-a.col+1);j++) { 
+          for(var j=1;j<(a.endCol-a.col+1);j++) { 
             my_array[j] += parseInt(data_a[i*(a.endCol-a.col+1)+j]);
           }    
         }
         Parent.insertRow();
+        Parent.rows[1].insertCell(j);
+        Parent.rows[1].cells[j].innerText = "";
         for(var j=1;j<(a.endCol-a.col+1);j++) {
           Parent.rows[1].insertCell(j); 
           Parent.rows[1].cells[j].innerText = my_array[j];
@@ -353,6 +355,8 @@
           }    
         }
         Parent.insertRow();
+        Parent.rows[1].insertCell(j);
+        Parent.rows[1].cells[j].innerText = "";
         for(var j=1;j<(b.endCol-b.col+1);j++) {
           Parent.rows[1].insertCell(j); 
           Parent.rows[1].cells[j].innerText = my_array[j];

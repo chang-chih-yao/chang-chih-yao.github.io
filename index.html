@@ -25,8 +25,7 @@
   <button id="even">活動建築</button>
   <br/>
   <br/>
-  <span style="font-size:14px;">距離30等還需要的素材 and 時間：</span>
-  <br/>
+  <h3 >距離30等還需要的素材 and 時間：</h3>
   <span style="font-size:14px;">目前建築等級：</span>
   <select id=theList></select>
   <table border="2" width="400" id="my_table2"></table> 
@@ -334,7 +333,7 @@
           }    
         }
         Parent.insertRow();
-        for(var j=0;j<(a.endCol-a.col+1);j++) {
+        for(var j=1;j<(a.endCol-a.col+1);j++) {
           Parent.rows[1].insertCell(j); 
           Parent.rows[1].cells[j].innerText = my_array[j];
         }
@@ -354,12 +353,12 @@
           }    
         }
         Parent.insertRow();
-        for(var j=0;j<(b.endCol-b.col+1);j++) {
+        for(var j=1;j<(b.endCol-b.col+1);j++) {
           Parent.rows[1].insertCell(j); 
           Parent.rows[1].cells[j].innerText = my_array[j];
         }
       }
+
     });
-    
   });
 </script>

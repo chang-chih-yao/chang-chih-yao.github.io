@@ -33,6 +33,7 @@
     <button id="train" style="background-color:#e6e6e6;">訓練場</button>
     <button id="altar" style="background-color:#e6e6e6;">祭壇</button>
     <button id="even" style="background-color:#e6e6e6;">活動建築</button>
+    <button id="dragon_tree" style="background-color:#e6e6e6;">龍果樹</button>
   <br/>
   <br/>
   <h3 id="show">Loading...</h3>
@@ -59,6 +60,7 @@
     document.getElementById('train').disabled=true;
     document.getElementById('altar').disabled=true;
     document.getElementById('even').disabled=true;
+    document.getElementById('dragon_tree').disabled=true;
     
     var a = {
       sheetUrl : 'https://docs.google.com/spreadsheets/d/10Zqw0itl0gh0oewy5_I9LamZnICU5exQKCIAazlNBAQ/edit?usp=sharing',
@@ -100,6 +102,14 @@
       endRow : 33,
       endCol : 5
     };
+    var f = {
+      sheetUrl : 'https://docs.google.com/spreadsheets/d/10Zqw0itl0gh0oewy5_I9LamZnICU5exQKCIAazlNBAQ/edit?usp=sharing',
+      sheetTag : '龍果樹',
+      row: 4,
+      col: 2,
+      endRow : 30,
+      endCol : 5
+    };
     
     var $button_tag = $('#button_tag');
     var $zzz = $('#zzz');
@@ -111,6 +121,7 @@
     var $train = $('#train');
     var $altar = $('#altar');
     var $even = $('#even');
+    var $dragon_tree = $('#dragon_tree');
     var $show_High = "";
     var $show_cry = "";
     var $show_train = "";
@@ -123,13 +134,14 @@
     var my_time = setInterval(my_timer, 100);
     
     function my_timer(){
-      if (cou == 5){
+      if (cou == 6){
         $show.text("Successful Loading！");
         document.getElementById('High').disabled=false;
         document.getElementById('cry').disabled=false;
         document.getElementById('train').disabled=false;
         document.getElementById('altar').disabled=false;
         document.getElementById('even').disabled=false;
+        document.getElementById('dragon_tree').disabled=false;
         viewer();
         clearInterval(my_time);
       }
@@ -150,6 +162,7 @@
     my_Title.push(["等級", "升級花費", "銅幣<br/>", "銀幣<br/>", "金幣<br/>", "銀勳章<br/>", "金勳章<br/>", "時間"]);
     my_Title.push(["等級", "升級花費", "銅珠<br/>", "銀珠<br/>", "金珠<br/>", "時間"]);
     my_Title.push(["等級", "升級花費", "活動素材", "時間"]);
+    my_Title.push(["等級", "升級花費", "龍爪石<br/>", "時間"]);
     
     
     /*var myArray = [[1,2,3],[4,5,6],[7,8,9]]; 
@@ -217,6 +230,17 @@
       }*/
       cou += 1;
     });
+
+    $.get('https://script.google.com/macros/s/AKfycbwBM9uDumPSVrV57lxTiJWyfjWMCOw4g9bbYtH8CUaMgNbx-vE/exec',f, function(data){
+      var my_data = data.split(',');  //把傳出來的字串分割成陣列
+      data_f = my_data.slice();
+      /*var arr = [];
+      for(var i=0; i<(e.endRow-e.row+1); i++){
+        arr[i] = my_data.splice(0, (e.endCol-e.col+1)); 
+        $show_even += (arr[i]+'<br/>');
+      }*/
+      cou += 1;
+    });
     
     
     $High.on('click', function() {
@@ -225,6 +249,7 @@
       document.getElementById('train').style.background = "#e6e6e6";
       document.getElementById('altar').style.background = "#e6e6e6";
       document.getElementById('even').style.background = "#e6e6e6";
+      document.getElementById('dragon_tree').style.background = "#e6e6e6";
       document.getElementById('theList').style.visibility = "visible";
       document.getElementById('my_form').style.visibility = "visible";
       $now_lv.text("目前建築等級：");
@@ -296,6 +321,7 @@
       document.getElementById('train').style.background = "#e6e6e6";
       document.getElementById('altar').style.background = "#e6e6e6";
       document.getElementById('even').style.background = "#e6e6e6";
+      document.getElementById('dragon_tree').style.background = "#e6e6e6";
       document.getElementById('theList').style.visibility = "visible";
       document.getElementById('my_form').style.visibility = "visible";
       $now_lv.text("目前建築等級：");
@@ -367,6 +393,7 @@
       document.getElementById('train').style.background = "#ffb3ff";
       document.getElementById('altar').style.background = "#e6e6e6";
       document.getElementById('even').style.background = "#e6e6e6";
+      document.getElementById('dragon_tree').style.background = "#e6e6e6";
       document.getElementById('theList').style.visibility = "visible";
       document.getElementById('my_form').style.visibility = "visible";
       $now_lv.text("目前建築等級：");
@@ -453,6 +480,7 @@
       document.getElementById('train').style.background = "#e6e6e6";
       document.getElementById('altar').style.background = "#ffb3ff";
       document.getElementById('even').style.background = "#e6e6e6";
+      document.getElementById('dragon_tree').style.background = "#e6e6e6";
       document.getElementById('theList').style.visibility = "visible";
       document.getElementById('my_form').style.visibility = "visible";
       $now_lv.text("目前建築等級：");
@@ -524,6 +552,7 @@
       document.getElementById('train').style.background = "#e6e6e6";
       document.getElementById('altar').style.background = "#e6e6e6";
       document.getElementById('even').style.background = "#ffb3ff";
+      document.getElementById('dragon_tree').style.background = "#e6e6e6";
       document.getElementById('theList').style.visibility = "visible";
       document.getElementById('my_form').style.visibility = "visible";
       $now_lv.text("目前建築等級：");
@@ -566,6 +595,64 @@
       $button_tag.text("活動建築，所有素材一覽表：");
       $zzz.empty();
       $zzz.text("活動建築，距離滿等還需要的素材：");
+    });
+
+    $dragon_tree.on('click', function() {
+      document.getElementById('High').style.background = "#e6e6e6";
+      document.getElementById('cry').style.background = "#e6e6e6";
+      document.getElementById('train').style.background = "#e6e6e6";
+      document.getElementById('altar').style.background = "#e6e6e6";
+      document.getElementById('even').style.background = "#e6e6e6";
+      document.getElementById('dragon_tree').style.background = "#ffb3ff";
+      document.getElementById('theList').style.visibility = "visible";
+      document.getElementById('my_form').style.visibility = "visible";
+      $now_lv.text("目前建築等級：");
+      $show.empty();
+      //$show.html($show_even);
+      for(var i = theList.options.length - 1 ; i >= 0 ; i--){
+        theList.remove(i);
+      }
+      theList.options[0]=new Option("請選擇", "", "false", "false");
+      theList.options[0].disabled = "false";
+      for(var j = 0; j < (f.endRow - f.row +1); j++){
+        var index=theList.options.length;
+        theList.options[index]=new Option(j, j);
+      }
+
+      var small_table = document.getElementById("my_table2");
+      while(small_table.hasChildNodes()) {
+        small_table.removeChild(small_table.firstChild);
+      }
+      
+      var Parent = document.getElementById("my_table1");
+      while(Parent.hasChildNodes()) {
+        Parent.removeChild(Parent.firstChild);
+      }
+      var columnCount = my_Title[5].length;
+      var row = Parent.insertRow(-1);
+      for (var i = 0; i < columnCount; i++) {
+        var headerCell = document.createElement("TH");
+        headerCell.innerHTML = my_Title[5][i];
+        if (i == 2){
+          var _img = document.createElement("img");
+   		    _img.setAttribute("src", "images/龍爪石.JPG");
+          _img.style.width = img_size;
+          _img.style.height = img_size;
+          headerCell.appendChild(_img);
+        }
+        row.appendChild(headerCell);
+      }
+      for(var i=0;i<(f.endRow-f.row+1);i++) {
+        Parent.insertRow(); 
+        for(var j=0;j<(f.endCol-f.col+1);j++) { 
+          Parent.rows[i+1].insertCell(j); 
+          Parent.rows[i+1].cells[j].innerText = data_f[i*(f.endCol-f.col+1)+j]; 
+        }    
+      }
+      $button_tag.empty();
+      $button_tag.text("龍果樹，所有素材一覽表：");
+      $zzz.empty();
+      $zzz.text("龍果樹，距離滿等還需要的素材：");
     });
     
     /*function change_list(){
@@ -784,6 +871,35 @@
         Parent.rows[1].insertCell(0);
         Parent.rows[1].cells[0].innerText = " ";
         for(var j=1;j<(e.endCol-e.col+1);j++) {
+          Parent.rows[1].insertCell(j); 
+          Parent.rows[1].cells[j].innerText = my_array[j];
+        }
+      }
+      else if ($button_tag.text() == "龍果樹，所有素材一覽表："){
+        var columnCount = my_Title[5].length;
+        var row = Parent.insertRow(-1);
+        for (var i = 0; i < columnCount; i++) {
+          var headerCell = document.createElement("TH");
+          headerCell.innerHTML = my_Title[5][i];
+          if (i == 2){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/龍爪石.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
+          row.appendChild(headerCell);
+        }
+
+        for(var i=this.value;i<(f.endRow-f.row+1);i++) {
+          for(var j=0;j<(f.endCol-f.col+1);j++) { 
+            my_array[j] += parseInt(data_f[i*(f.endCol-f.col+1)+j]);
+          }    
+        }
+        Parent.insertRow();
+        Parent.rows[1].insertCell(0);
+        Parent.rows[1].cells[0].innerText = " ";
+        for(var j=1;j<(f.endCol-f.col+1);j++) {
           Parent.rows[1].insertCell(j); 
           Parent.rows[1].cells[j].innerText = my_array[j];
         }

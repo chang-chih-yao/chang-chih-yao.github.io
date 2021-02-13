@@ -40,10 +40,10 @@
   <h3 id="zzz"></h3>
   <span id="now_lv"></span>
   <select id=theList></select>
-  <table border="2" width="400" id="my_table2"></table> 
+  <table border="2" width="450" id="my_table2"></table> 
   <hr>
   <h3 id="button_tag"></h3>
-  <table border="2" width="400" id="my_table1"></table> 
+  <table border="2" width="450" id="my_table1"></table> 
   <br/>
   <a id="my_form" target="_blank" style="text-decoration:none;color:red;" href="https://forms.gle/QcPhWpHFgVpEu2mA7">意見回饋</a>
   <br/>
@@ -83,16 +83,16 @@
       sheetTag : '訓練場',
       row: 4,
       col: 2,
-      endRow : 38,
-      endCol : 9
+      endRow : 43,
+      endCol : 10
     };
     var d = {
       sheetUrl : 'https://docs.google.com/spreadsheets/d/10Zqw0itl0gh0oewy5_I9LamZnICU5exQKCIAazlNBAQ/edit?usp=sharing',
       sheetTag : '祭壇',
       row: 4,
       col: 2,
-      endRow : 38,
-      endCol : 7
+      endRow : 48,
+      endCol : 10
     };
     var e = {
       sheetUrl : 'https://docs.google.com/spreadsheets/d/10Zqw0itl0gh0oewy5_I9LamZnICU5exQKCIAazlNBAQ/edit?usp=sharing',
@@ -159,8 +159,8 @@
     var my_Title = new Array();
     my_Title.push(["等級", "升級花費", "勇武晶石<br/>", "龍麟<br/>", "龍爪石<br/>", "時間"]);
     my_Title.push(["等級", "升級花費", "龍晶石<br/>", "龍麟<br/>", "龍爪石<br/>", "時間"]);
-    my_Title.push(["等級", "升級花費", "銅幣<br/>", "銀幣<br/>", "金幣<br/>", "銀勳章<br/>", "金勳章<br/>", "時間"]);
-    my_Title.push(["等級", "升級花費", "銅珠<br/>", "銀珠<br/>", "金珠<br/>", "時間"]);
+    my_Title.push(["等級", "升級花費", "銅幣<br/>", "銀幣<br/>", "金幣<br/>", "銀勳章<br/>", "金勳章<br/>", "恩惠<br/>", "時間"]);
+    my_Title.push(["等級", "升級花費", "銅珠<br/>", "銀珠<br/>", "金珠<br/>", "大金珠<br/>", "彩珠<br/>", "恩惠<br/>", "時間"]);
     my_Title.push(["等級", "升級花費", "活動素材", "時間"]);
     my_Title.push(["等級", "升級花費", "龍爪石<br/>", "時間"]);
     
@@ -458,6 +458,13 @@
           _img.style.height = img_size;
           headerCell.appendChild(_img);
         }
+        else if (i == 7){
+          var _img = document.createElement("img");
+   		    _img.setAttribute("src", "images/恩惠.JPG");
+          _img.style.width = img_size;
+          _img.style.height = img_size;
+          headerCell.appendChild(_img);
+        }
 
         row.appendChild(headerCell);
       }
@@ -531,6 +538,28 @@
           _img.style.height = img_size;
           headerCell.appendChild(_img);
         }
+        else if (i == 5){
+          var _img = document.createElement("img");
+   		    _img.setAttribute("src", "images/大金珠.JPG");
+          _img.style.width = img_size;
+          _img.style.height = img_size;
+          headerCell.appendChild(_img);
+        }
+        else if (i == 6){
+          var _img = document.createElement("img");
+   		    _img.setAttribute("src", "images/彩珠.JPG");
+          _img.style.width = img_size;
+          _img.style.height = img_size;
+          headerCell.appendChild(_img);
+        }
+        else if (i == 7){
+          var _img = document.createElement("img");
+   		    _img.setAttribute("src", "images/恩惠.JPG");
+          _img.style.width = img_size;
+          _img.style.height = img_size;
+          headerCell.appendChild(_img);
+        }
+
         row.appendChild(headerCell);
       }
       for(var i=0;i<(d.endRow-d.row+1);i++) {
@@ -665,7 +694,7 @@
         Parent.removeChild(Parent.firstChild);
       }
       
-      var my_array = [0,0,0,0,0,0,0,0];
+      var my_array = [0,0,0,0,0,0,0,0,0];
       
       if($button_tag.text() == "真龍建築，所有素材一覽表："){
         var columnCount = my_Title[0].length;
@@ -794,6 +823,14 @@
             _img.style.height = img_size;
             headerCell.appendChild(_img);
           }
+          else if (i == 7){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/恩惠.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
+
           row.appendChild(headerCell);
         }
 
@@ -837,6 +874,28 @@
             _img.style.height = img_size;
             headerCell.appendChild(_img);
           }
+          else if (i == 5){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/大金珠.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
+          else if (i == 6){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/彩珠.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
+          else if (i == 7){
+            var _img = document.createElement("img");
+            _img.setAttribute("src", "images/恩惠.JPG");
+            _img.style.width = img_size;
+            _img.style.height = img_size;
+            headerCell.appendChild(_img);
+          }
+
           row.appendChild(headerCell);
         }
 
